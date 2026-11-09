@@ -1,25 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Configuration
 DOMAIN="max-institute.org"
 CORE_URL="https://${DOMAIN}"
 SPORTS_URL="https://sports.${DOMAIN}"
 GAMES_URL="https://games.${DOMAIN}"
 
-# Optional: Pass your sovereign_session cookie as the first argument
-# Example: ./test-sso.sh "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 SESSION_COOKIE="${1:-}"
 
 echo "=================================================="
-echo "  Sovereign Ecosystem Cross-Domain Auth Probe"
-echo "  Target Domain: ${DOMAIN}"
-echo "================================================--"
+ echo "  Sovereign Ecosystem Cross-Domain Auth Probe"
+ echo "  Target Domain: ${DOMAIN}"
+ echo "=================================================="
 
 if [ -z "${SESSION_COOKIE}" ]; then
-    echo "[!] No session cookie provided. Testing fail-closed behavior (expecting 401/Unauthorized)..."
+    echo "[!] No session cookie provided."
+    echo "[!] Testing fail-closed behavior (expecting HTTP 401 Unauthorized across all nodes)..."
 else
-    echo "[+] Session cookie loaded. Testing authenticated cross-domain session validation..."
+    echo "[+] Testing authenticated cross-domain session validation..."
 fi
 echo ""
 
@@ -50,6 +48,6 @@ test_endpoint "Core Gateway"    "${CORE_URL}"    "${SESSION_COOKIE}"
 test_endpoint "Sports Gateway"  "${SPORTS_URL}"  "${SESSION_COOKIE}"
 test_endpoint "Games Gateway"   "${GAMES_URL}"   "${SESSION_COOKIE}"
 
-echo "================================================--"
+echo "=================================================="
 echo "  Verification Probe Complete."
-echo "================================================--"
+echo "=================================================="
