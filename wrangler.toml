@@ -1,0 +1,14 @@
+name = "max-games-gateway"
+main = "src/index.ts"
+compatibility_date = "2026-03-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+ENVIRONMENT = "production"
+APEX_DOMAIN = "games.max-institute.org"
+
+[[d1_databases]]
+binding = "GAMES_DB"
+database_name = "max-games-db"
+database_id = "GAMES_DB_UUID_PLACEHOLDER"
+migrations_dir = "migrations"

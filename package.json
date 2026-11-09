@@ -1,0 +1,19 @@
+{
+  "name": "max-games-gateway",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest run",
+    "db:migrate:local": "wrangler d1 migrations apply GAMES_DB --local",
+    "db:migrate:remote": "wrangler d1 migrations apply GAMES_DB --remote"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260301.0",
+    "miniflare": "^3.20250310.0",
+    "vitest": "^2.1.8",
+    "wrangler": "^3.0.0"
+  }
+}
