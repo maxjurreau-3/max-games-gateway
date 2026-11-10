@@ -1,6 +1,16 @@
 import { Hono } from 'hono';
-import type { Env } from './index';
+import type { DurableObjectNamespace } from '@cloudflare/workers-types';
 import { hmacAuthMiddleware } from './middleware/hmac';
+
+export interface Env {
+  DB: D1Database;
+  GAME_ROOM: DurableObjectNamespace;
+  HMAC_SECRET: string;
+  ENVIRONMENT: string;
+}
+
+// Export the actual class configured as GAME_ROOM in wrangler.toml.
+export { GameRoomDO } from './durable-objects/GameRoomDO';
 
 const app = new Hono<{ Bindings: Env }>();
 
