@@ -8,7 +8,15 @@ ENVIRONMENT = "production"
 APEX_DOMAIN = "games.max-institute.org"
 
 [[d1_databases]]
-binding = "GAMES_DB"
+binding = "DB"
 database_name = "max-games-db"
 database_id = "GAMES_DB_UUID_PLACEHOLDER"
 migrations_dir = "migrations"
+
+[[durable_objects.bindings]]
+name = "GAME_ROOM"
+class_name = "GameRoomDO"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["GameRoomDO"]
